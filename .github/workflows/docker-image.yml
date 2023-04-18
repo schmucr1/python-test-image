@@ -15,13 +15,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    
+    env:
+      IMAGE_NAME: python-test-image
+      IMAGE_VERSION: latest
 
     steps:
     - uses: actions/checkout@v3
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag python-test-image:latest
-      #run: docker build . --file Dockerfile --tag python-test-image:$(date +%s)
+      run: docker build . --file Dockerfile --tag $IMAGE_NAME:$IMAGE_VERSION
+      #run: docker build . --file Dockerfile --tag $IMAGE_NAME:$(date +%s)
       
     - name: Login with Github Container registry
       uses: docker/login-action@v2
@@ -31,4 +35,4 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
         
     - name: Publish to Github Container registry
-      run: docker push ghcr.io/schmucr1/python-test-image:latest
+      run: docker push ghcr.io/schmucr1/$IMAGE_NAME:$IMAGE_VERSION
