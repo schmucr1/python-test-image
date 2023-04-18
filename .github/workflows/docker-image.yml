@@ -20,7 +20,8 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag python-test-image:$(date +%s)
+      run: docker build . --file Dockerfile --tag python-test-image:latest
+      #run: docker build . --file Dockerfile --tag python-test-image:$(date +%s)
       
     - name: Login with Github Container registry
       uses: docker/login-action@v2
@@ -29,5 +30,5 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
         
-    #- name: Publish to Github Container registry
-      #run: docker push ghcr.io/schmucr1/python-test-image:1:0:0
+    - name: Publish to Github Container registry
+      run: docker push ghcr.io/schmucr1/python-test-image:latest
