@@ -13,5 +13,5 @@ the Singularity environment variables as shown below in order to use the
 export SINGULARITY_DOCKER_USERNAME=<username>
 export SINGULARITY_DOCKER_PASSWORD=<read-packages token>
 
-singularity run docker://ghcr.io/schmucr1/python-test-image:from-github:main python
+singularity run docker://ghcr.io/schmucr1/python-test-image:main python
 ```
